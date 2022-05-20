@@ -70,6 +70,7 @@ public class TaskController {
         return taskService.changeTaskDeadline(taskId, taskDeadlineDTO);
     }
 
+    // Example usage: http://localhost:8080/api/tasks?title=abc
     @GetMapping(value = "/tasks", params = {"title"})
     public Iterable<Task> findByTitle(
             @Spec(path = "title", params = "title", spec = Like.class) Specification<Task> spec,
@@ -84,6 +85,7 @@ public class TaskController {
         return taskRepository.findAll(spec, pageable);
     }
 
+    // Example usage: http://localhost:8080/api/tasks?before=2020-05-25
     @GetMapping(value = "/tasks", params = {"before"})
     public Iterable<Task> findByDeadline(
             @Spec(path = "deadline", params = "before", spec = LessThanOrEqual.class) Specification<Task> spec,
